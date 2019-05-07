@@ -21,6 +21,8 @@ Plugin 'pangloss/vim-javascript'      " JS syntax
 Plugin 'mxw/vim-jsx'                  " JSX syntax
 Plugin 'lepture/vim-jinja'            " Jinja2 syntax
 Plugin 'tomtom/tcomment_vim'          " Code commenter
+Plugin '907th/vim-auto-save'          " Auto save
+Plugin 'gcmt/taboo.vim'               " Rename tabs
 
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 " >> All of your Plugins must be added before the following line
@@ -41,6 +43,8 @@ nmap <C-_> gcc
 imap <C-_> <ESC>gcc
 vmap <C-_> gc
 
+" >  Auto Save Configurations
+let g:auto_save = 1 " enable AutoSave on Vim startup
 
 " > Custom Configurations
 
@@ -59,7 +63,6 @@ vmap <C-_> gc
 
 
 
-
 " 1. GENERAL
 
 " Sets how many lines of history VIM has to remember
@@ -75,10 +78,9 @@ set autoread
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
 
-" " :W sudo saves the file 
-" " (useful for handling the permission-denied error)
-" command W w !sudo tee % > /dev/null
-
+" :W sudo saves the file 
+" (useful for handling the permission-denied error)
+command! W w !sudo tee % > /dev/null
 
 " 2. VIM USER INTERFACE
 
@@ -134,6 +136,7 @@ nmap <C-c> :.w! ~/.vimbuffer<CR>
 map <C-p> :r ~/.vimbuffer<CR>
 
 
+
 " 3. COLORS AND FONTS
 
 " Enable syntax highlighting
@@ -186,6 +189,7 @@ inoremap { {}<left>
 inoremap {<Space> {  }<left><left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
+imap zz <ESC>
 
 
 " 6. VISUAL MODE RELATED
@@ -313,6 +317,12 @@ map <leader>x :e ~/buffer.md<cr>
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
+" " automatically leave insert mode after 'updatetime' milliseconds of inaction
+" au CursorHoldI * stopinsert
+"
+" " set 'updatetime' to 15 seconds when in insert mode
+" au InsertEnter * let updaterestore=&updatetime | set updatetime=15000
+" au InsertLeave * let &updatetime=updaterestore
 
 
 " 11. HELPER FUNCTIONS
@@ -366,4 +376,5 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+
 
