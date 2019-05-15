@@ -133,6 +133,8 @@ nmap <C-c> :.w! ~/.vimbuffer<CR>
 " paste from buffer
 map <C-p> :r ~/.vimbuffer<CR>
 
+" Avoid nopaste behaviour when pasting from clipboard
+nmap <leader>v "+p
 
 " 3. COLORS AND FONTS
 
