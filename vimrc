@@ -9,6 +9,9 @@ Plug 'vim-airline/vim-airline'				" Vim status bar
 Plug 'vim-airline/vim-airline-themes' " Vim status bar themes
 Plug 'ajmwagar/vim-deus'							" Deus theme
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'lepture/vim-jinja'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 call plug#end()
 
 " Plugin Configurations
@@ -39,6 +42,7 @@ let g:deus_termcolors=256
 
 " > Vim-go Configurations
 let g:go_def_mapping_enabled = 0
+let g:go_fmt_command = "goimports"
 
 " > Coc.nvim Configurations
 " Map leader key to ','
@@ -225,3 +229,6 @@ set backspace=indent,eol,start
 
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" Break line preserving words
+set linebreak
