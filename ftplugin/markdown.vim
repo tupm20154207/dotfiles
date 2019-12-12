@@ -1,10 +1,4 @@
-setlocal  tabstop=4
-setlocal  shiftwidth=4
-
-" Enable indenting commented lines
-setlocal nosmartindent
-setlocal cindent
-setlocal cinkeys-=0#
-setlocal indentkeys-=0#
+setlocal  tabstop=4 shiftwidth=4 expandtab
+setlocal autoindent smartindent
 setlocal nonumber
 
