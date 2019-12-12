@@ -232,3 +232,9 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 
 " Break line preserving words
 set linebreak
+
+" Yanking selected text to clipboard
+vmap Y "+y
+
+" Enable moving cursor using mouse
+set mouse=a

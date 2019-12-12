@@ -32,7 +32,7 @@ imap <C-_> <ESC><plug>NERDCommenterToggle
 
 " > Prettier Configurations
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
 " > Airline Configurations
 let g:airline_theme="deus"
@@ -181,8 +181,8 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Indent using 2 spaces
-set ts=2 sw=2 expandtab
+" Indent using 4 spaces
+set ts=4 sw=4 expandtab
 
 " Use terminal theme instead of byobu
 set background=dark
@@ -240,3 +240,9 @@ set backspace=indent,eol,start
 
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" Copy visually-selected text to system clipboard
+vmap Y "+y
+
+" Enable moving cursor using mouse
+set mouse=a
