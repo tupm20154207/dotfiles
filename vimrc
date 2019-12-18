@@ -232,3 +232,5 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 
 " Break line preserving words
 set linebreak
+
+set mouse=a
