@@ -1,17 +1,20 @@
 " Plugins
-filetype plugin indent on    					" required
+filetype plugin indent on    					        " required
 call plug#begin('~/.vim/plugged')
-Plug 'SirVer/ultisnips'             	" Create snippets
-Plug 'scrooloose/nerdtree'          	"	File management tree
-Plug 'tomtom/tcomment_vim'          	" Code commenter
-Plug 'fatih/vim-go'                 	" Vim Go plugin
-Plug 'vim-airline/vim-airline'				" Vim status bar
-Plug 'vim-airline/vim-airline-themes' " Vim status bar themes
-Plug 'ajmwagar/vim-deus'							" Deus theme
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'lepture/vim-jinja'
+Plug 'scrooloose/nerdtree'          	                "	File management tree
+Plug 'scrooloose/nerdcommenter'          	            "	Code commenter
+Plug 'fatih/vim-go'                 	                " Vim Go plugin
+Plug 'vim-airline/vim-airline'				            " Status bar
+Plug 'vim-airline/vim-airline-themes'                   " Status bar themes
+Plug 'ajmwagar/vim-deus'							    " Deus theme
+Plug 'neoclide/coc.nvim', {'branch': 'release'}         " Vim intellisense
+Plug 'tpope/vim-fugitive'                               " Managing Git
+" JS + TS Plugins
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'lepture/vim-jinja'                                " Jinja syntax
+Plug '907th/vim-auto-save'
+
 call plug#end()
 
 " Plugin Configurations
@@ -21,6 +24,10 @@ let g:UltiSnipsEditSplit="vertical"
 
 " > NERDTree Configurations
 map <F10> :NERDTreeToggle<CR>
+
+" > NERDCommenter Configurations
+map <C-_> <plug>NERDCommenterToggle
+imap <C-_> <ESC><plug>NERDCommenterToggle
 
 " > Airline Configurations
 let g:airline_theme="deus"
@@ -39,6 +46,13 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=dark    " Setting dark mode
 colorscheme deus
 let g:deus_termcolors=256
+
+" > Vim autosave
+let g:auto_save = 0
+augroup ft_markdown
+  au!
+  au FileType markdown let b:auto_save = 1
+augroup END
 
 " > Vim-go Configurations
 let g:go_def_mapping_enabled = 0
@@ -231,6 +245,7 @@ set backspace=indent,eol,start
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " Break line preserving words
+set wrap
 set linebreak
 
 " Yanking selected text to clipboard
