@@ -170,8 +170,8 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Indent using 2 spaces
-set ts=2 sw=2 expandtab
+" Indent using 4 spaces
+set ts=4 sw=4 expandtab
 
 " Use terminal theme instead of byobu
 set background=dark
@@ -233,4 +233,11 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " Break line preserving words
 set linebreak
 
+" Yanking selected text to clipboard
+vmap Z "+y
+
+" Enable moving cursor using mouse
 set mouse=a
+
+" Prevent Vim from clearing the clipboard on exit
+autocmd VimLeave * call system("xsel -ib", getreg('+'))
