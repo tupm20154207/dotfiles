@@ -1,0 +1,35 @@
+# toggle menu bar setting
+1. press CTRL+SHIFT+P
+2. typing "key bindings"
+3. select "Preferences: Key Bindings"
+4. Add to list: {"keys": ["ctrl+alt+m"], "command": "toggle_menu"}
+
+# python ide setting:
+
+## sublime packages
+- SublimeLinter
+- SublimeLinter-flake8 (linter)
+- SublimeLinter-pycodestyle (auto format)
+
+## pip packages
+- flake8
+- pycodestyle
+
+## settings
+1. select "Preferences>PackageSettings>SublimeLinter>Settings"
+2. add
+```
+{
+    "lint_mode": "load_save",
+    "linters": {
+        "flake8": {
+            "args": ["--ignore=E501,E127,E128,W191"],
+        }
+        "pycodestyle": {
+            "ignore": "E401",
+            // E401 multiple imports on one line
+            "max-line-length": 120
+        }
+    }
+}
+```

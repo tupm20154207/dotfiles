@@ -57,6 +57,7 @@ augroup END
 
 " > Vim-go Configurations
 let g:go_def_mapping_enabled = 0
+let g:go_fmt_command = "goimports"
 
 " > Coc.nvim Configurations
 " Map leader key to ','
@@ -244,12 +245,15 @@ set backspace=indent,eol,start
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-" Copy visually-selected text to system clipboard
-vmap Y "+y
+" Break line preserving words
+set wrap
+set linebreak
+
+" Yanking selected text to clipboard
+vmap Z "+y
 
 " Enable moving cursor using mouse
 set mouse=a
 
-" Word wrapping
-set wrap
-set linebreak
+" Prevent Vim from clearing the clipboard on exit
+autocmd VimLeave * call system("xsel -ib", getreg('+'))
