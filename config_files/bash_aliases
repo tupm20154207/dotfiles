@@ -3,6 +3,10 @@ alias open='xdg-open'
 alias pim='xclip -selection clipboard -t image/png -o >'
 alias vi='vim'
 
+dict(){
+  trans $@|more
+}
+
 workon(){
   source $1/bin/activate
 }
@@ -13,4 +17,8 @@ git-sync(){
   git add *
   git commit -m "Synced at $(date +'%Y-%m-%d %T')"
   git push $remote $branch
+}
+
+eng-note() {
+  vim /home/tupham/vtnet/english/sapiens.md
 }

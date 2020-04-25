@@ -9,10 +9,7 @@ Plug 'vim-airline/vim-airline-themes'                   " Status bar themes
 Plug 'ajmwagar/vim-deus'							    " Deus theme
 Plug 'neoclide/coc.nvim', {'branch': 'release'}         " Vim intellisense
 Plug 'tpope/vim-fugitive'                               " Managing Git
-" Format code on save
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+Plug 'chamindra/marvim'                               " Managing macros
 " JS + TS Plugins
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
@@ -32,10 +29,6 @@ map <F10> :NERDTreeToggle<CR>
 " > NERDCommenter Configurations
 map <C-_> <plug>NERDCommenterToggle
 imap <C-_> <ESC><plug>NERDCommenterToggle
-
-" > Prettier Configurations
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
 " > Airline Configurations
 let g:airline_theme="deus"
