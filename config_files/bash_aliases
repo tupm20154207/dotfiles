@@ -2,6 +2,12 @@ alias xampp='sudo /opt/lampp/manager-linux-x64.run'
 alias open='xdg-open'
 alias pim='xclip -selection clipboard -t image/png -o >'
 alias vi='vim'
+alias restart-gnome='sudo killall -3 gnome-shell'
+alias keepass='$(find ~/.local/bin/ -type f -executable -print | grep KeePassXC | head -n1) >/dev/null 2>&1 &'
+
+gatepro(){
+  ~/Apps/Gatepro/bin/javaws ~/Apps/Gatepro/master.jnlp
+}
 
 dict(){
   trans $@|more
@@ -12,13 +18,48 @@ workon(){
 }
 
 git-sync(){
-  remote=$([ "$1" == "" ] && echo "origin" || echo "$1")
-  branch=$([ "$2" == "" ] && echo "master" || echo "$2")
-  git add *
+  remote=${1:-"master"}
+  branch=${2:-"origin"}
+  git add -A
   git commit -m "Synced at $(date +'%Y-%m-%d %T')"
   git push $remote $branch
 }
 
-eng-note() {
-  vim /home/tupham/vtnet/english/sapiens.md
+git-note(){
+  vim /home/tupham/vtnet/git/notes.md
+}
+
+run-skydive(){
+  mode=$1
+  if [[ $1 == "" ]]; then
+    mode=allinone
+  fi
+  EXEC=/home/tupham/go/bin/skydive
+  sudo chown root:root $EXEC
+  sudo $EXEC $mode
+}
+
+# Install common packages
+
+code-update(){
+  wget https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable -O /tmp/code_latest_amd64.deb
+  sudo dpkg -i /tmp/code_latest_amd64.deb
+}
+
+subl-update(){
+  wget download.sublimetext.com/latest/stable/linux/x64/deb -O /tmp/subl_latest_amd64.deb
+  sudo dpkg -i /tmp/subl_latest_amd64.deb
+}
+
+go-install(){
+  [[ -z $1 ]] && VERSION=1.14.3 || VERSION=$1
+  wget https://dl.google.com/go/go$VERSION.linux-amd64.tar.gz -O /tmp/go.tar.gz
+  sudo tar -C /usr/local -xzf /tmp/go.tar.gz
+  if [[ ! $(which go) ]]; then
+    mkdir ~/go
+    echo "export GOROOT=/usr/local/go" >> ~/.bashrc
+    echo "export GOPATH=/home/tupham/go" >> ~/.bashrc
+    echo "export PATH=\$GOPATH/bin:\$GOROOT/bin:\$PATH" >> ~/.bashrc
+    source ~/.bashrc
+  fi
 }
