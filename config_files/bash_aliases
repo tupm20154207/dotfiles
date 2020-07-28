@@ -18,8 +18,8 @@ workon(){
 }
 
 git-sync(){
-  remote=${1:-"master"}
-  branch=${2:-"origin"}
+  remote=${1:-"origin"}
+  branch=${2:-"master"}
   git add -A
   git commit -m "Synced at $(date +'%Y-%m-%d %T')"
   git push $remote $branch
