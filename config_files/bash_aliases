@@ -3,7 +3,6 @@ alias open='xdg-open'
 alias pim='xclip -selection clipboard -t image/png -o >'
 alias vi='vim'
 alias restart-gnome='sudo killall -3 gnome-shell'
-alias keepass='$(find ~/.local/bin/ -type f -executable -print | grep KeePassXC | head -n1) >/dev/null 2>&1 &'
 
 gatepro(){
   ~/Apps/Gatepro/bin/javaws ~/Apps/Gatepro/master.jnlp
