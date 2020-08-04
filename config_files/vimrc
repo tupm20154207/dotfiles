@@ -1,11 +1,11 @@
 " Plugins
-filetype plugin indent on    					        " required
+filetype plugin indent on                               " required
 call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree'          	                " File management tree
-Plug 'scrooloose/nerdcommenter'          	            " Code commenter
-Plug 'vim-airline/vim-airline'				            " Status bar
+Plug 'scrooloose/nerdtree'                              " File management tree
+Plug 'scrooloose/nerdcommenter'                         " Code commenter
+Plug 'vim-airline/vim-airline'                          " Status bar
 Plug 'vim-airline/vim-airline-themes'                   " Status bar themes
-Plug 'ajmwagar/vim-deus'							    " Deus theme
+Plug 'ajmwagar/vim-deus'                                " Deus theme
 Plug 'tpope/vim-fugitive'                               " Managing Git
 Plug 'lepture/vim-jinja'                                " Jinja syntax
 Plug 'Raimondi/delimitMate'                             " Auto closing quotes and brackets
