@@ -38,6 +38,26 @@ run-skydive(){
   sudo $EXEC $mode
 }
 
+git(){
+  if [[ "$1" == "commit" ]]; then
+    echo "Select your account to commit:"
+    echo "[1]: Tu Pham <tupm4@viettel.com.vn>     (viettel gitlab)"
+    echo "[2]: Tu Pham <phamminhtubkhn@gmail.com> (personal github)"
+    read -p 'Perform commit as account number [1-2]: ' AUTHOR
+    if [[ "$AUTHOR" == "1" ]]; then
+      AUTHOR="Tu Pham <tupm4@viettel.com.vn>"
+    elif [[ "$AUTHOR" == "2" ]]; then
+      AUTHOR="Tu Pham <phamminhtubkhn@gmail.com>"
+    else
+      echo "Invalid account!"
+      return 1
+    fi
+    command git "$@" --author "$AUTHOR"
+  else
+    command git "$@"
+  fi
+}
+
 # Update tools & apps
 code-update(){
   PKG=/tmp/code_latest_amd64.deb
