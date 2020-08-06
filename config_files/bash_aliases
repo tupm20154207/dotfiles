@@ -3,10 +3,7 @@ alias open='xdg-open'
 alias pim='xclip -selection clipboard -t image/png -o >'
 alias vi='vim'
 alias restart-gnome='sudo killall -3 gnome-shell'
-
-gatepro(){
-  ~/Apps/Gatepro/bin/javaws ~/Apps/Gatepro/master.jnlp
-}
+alias noproxy='unset http_proxy https_proxy no_proxy'
 
 dict(){
   trans $@|more
@@ -40,17 +37,14 @@ run-skydive(){
 
 git(){
   if [[ "$1" == "commit" ]]; then
-    echo "Select your account to commit:"
-    echo "[1]: Tu Pham <tupm4@viettel.com.vn>     (viettel gitlab)"
-    echo "[2]: Tu Pham <phamminhtubkhn@gmail.com> (personal github)"
-    read -p 'Perform commit as account number [1-2]: ' AUTHOR
-    if [[ "$AUTHOR" == "1" ]]; then
-      AUTHOR="Tu Pham <tupm4@viettel.com.vn>"
-    elif [[ "$AUTHOR" == "2" ]]; then
+    # If current remote branch is from github, use personal email
+    # otherwise use viettel email
+    remote=$(git status -sb | head -n1 | sed "s/.*\.\.\.\(.*\)\/.*/\1/")
+    git remote -v | grep $remote | grep push | grep "github.com" > /dev/null
+    if [[ "$?" == "0" ]]; then
       AUTHOR="Tu Pham <phamminhtubkhn@gmail.com>"
     else
-      echo "Invalid account!"
-      return 1
+      AUTHOR="Tu Pham <tupm4@viettel.com.vn>"
     fi
     command git "$@" --author "$AUTHOR"
   else
@@ -61,28 +55,28 @@ git(){
 # Update tools & apps
 code-update(){
   PKG=/tmp/code_latest_amd64.deb
-  wget https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable -O $PKG
+  wget https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable -O $PKG --no-check-certificate
   sudo dpkg -i $PKG
   rm $PKG
 }
 
 subl-update(){
   PKG=/tmp/subl_latest_amd64.deb
-  wget download.sublimetext.com/latest/stable/linux/x64/deb -O $PKG
+  wget download.sublimetext.com/latest/stable/linux/x64/deb -O $PKG --no-check-certificate
   sudo dpkg -i $PKG
   rm $PKG
 }
 
 go-update(){
   PKG=/tmp/go.tar.gz
-  wget "https://dl.google.com/go/$(curl https://golang.org/VERSION?m=text).linux-amd64.tar.gz" -O $PKG
+  wget "https://dl.google.com/go/$(curl https://golang.org/VERSION?m=text).linux-amd64.tar.gz" -O $PKG --no-check-certificate
   sudo tar -xzf $PKG -C /usr/local/
   rm $PKG
 }
 
 pycharm-update(){
   PKG=/tmp/pycharm.tar.gz
-  wget "https://download.jetbrains.com/product?code=PCA&latest&distribution=linux" -O $PKG
+  wget "https://download.jetbrains.com/product?code=PCA&latest&distribution=linux" -O $PKG --no-check-certificate
   sudo tar -xzf $PKG -C /opt/
   rm $PKG
   cd /opt/pycharm-*/bin
@@ -92,7 +86,7 @@ pycharm-update(){
 
 goland-update(){
   PKG=/tmp/goland.tar.gz
-  wget "https://download.jetbrains.com/product?code=GO&latest&distribution=linux" -O $PKG
+  wget "https://download.jetbrains.com/product?code=GO&latest&distribution=linux" -O $PKG --no-check-certificate
   sudo tar -xzf $PKG -C /opt/
   rm $PKG
   cd /opt/GoLand-*/bin
