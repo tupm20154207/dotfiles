@@ -11,6 +11,7 @@ Plug 'lepture/vim-jinja'                                " Jinja syntax
 Plug 'Raimondi/delimitMate'                             " Auto closing quotes and brackets
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }      " Vim go
 Plug 'Vimjas/vim-python-pep8-indent'                    " Properly indenting python files
+Plug 'elentok/plaintasks.vim'                           " Sublime plain tasks for vim
 call plug#end()
 
 "=============================================================================
