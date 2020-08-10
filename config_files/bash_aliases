@@ -4,13 +4,10 @@ alias pim='xclip -selection clipboard -t image/png -o >'
 alias vi='vim'
 alias restart-gnome='sudo killall -3 gnome-shell'
 alias noproxy='unset http_proxy https_proxy no_proxy'
+alias venv='source ~/workspace/venv/bin/activate'
 
 dict(){
   trans $@|more
-}
-
-workon(){
-  source $1/bin/activate
 }
 
 git-sync(){
@@ -19,20 +16,6 @@ git-sync(){
   git add -A
   git commit -m "Synced at $(date +'%Y-%m-%d %T')"
   git push $remote $branch
-}
-
-git-note(){
-  vim /home/tupham/vtnet/git/notes.md
-}
-
-run-skydive(){
-  mode=$1
-  if [[ $1 == "" ]]; then
-    mode=allinone
-  fi
-  EXEC=/home/tupham/go/bin/skydive
-  sudo chown root:root $EXEC
-  sudo $EXEC $mode
 }
 
 git(){
