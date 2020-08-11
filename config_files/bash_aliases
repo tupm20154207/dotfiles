@@ -50,32 +50,6 @@ subl-update(){
   rm $PKG
 }
 
-go-update(){
-  PKG=/tmp/go.tar.gz
-  wget "https://dl.google.com/go/$(curl https://golang.org/VERSION?m=text).linux-amd64.tar.gz" -O $PKG --no-check-certificate
-  sudo tar -xzf $PKG -C /usr/local/
-  rm $PKG
-}
-
-pycharm-update(){
-  PKG=/tmp/pycharm.tar.gz
-  wget "https://download.jetbrains.com/product?code=PCA&latest&distribution=linux" -O $PKG --no-check-certificate
-  sudo tar -xzf $PKG -C /opt/
-  rm $PKG
-  cd /opt/pycharm-*/bin
-  sh pycharm.sh
-  # At the welcome menu, click Configure > Create Desktop Entry to launch PyCharm from
-}
-
-goland-update(){
-  PKG=/tmp/goland.tar.gz
-  wget "https://download.jetbrains.com/product?code=GO&latest&distribution=linux" -O $PKG --no-check-certificate
-  sudo tar -xzf $PKG -C /opt/
-  rm $PKG
-  cd /opt/GoLand-*/bin
-  sh goland.sh
-}
-
 postman-update(){
   PKG=/tmp/postman.tar.gz
   wget "https://dl.pstmn.io/download/latest/linux" -O $PKG --no-check-certificate
@@ -95,6 +69,13 @@ StartupWMClass=Postman
 OnlyShowIn=Unity;GNOME;
 X-UnityGenerated=true
 EOF
+}
+
+go-update(){
+  PKG=/tmp/go.tar.gz
+  wget "https://dl.google.com/go/$(curl https://golang.org/VERSION?m=text).linux-amd64.tar.gz" -O $PKG --no-check-certificate
+  sudo tar -xzf $PKG -C /usr/local/
+  rm $PKG
 }
 
 # Configure tools & apps
