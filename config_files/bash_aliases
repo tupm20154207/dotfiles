@@ -76,6 +76,27 @@ goland-update(){
   sh goland.sh
 }
 
+postman-update(){
+  PKG=/tmp/postman.tar.gz
+  wget "https://dl.pstmn.io/download/latest/linux" -O $PKG --no-check-certificate
+  sudo tar -xzf $PKG -C /opt/
+  rm $PKG
+  cat << EOF > "${HOME}/.local/share/applications/postman.desktop"
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=Postman
+Icon=/opt/Postman/app/resources/app/assets/icon.png
+Path=/opt/Postman
+Exec=/opt/Postman/Postman
+StartupNotify=false
+StartupWMClass=Postman
+OnlyShowIn=Unity;GNOME;
+X-UnityGenerated=true
+EOF
+}
+
 # Configure tools & apps
 go-config(){
   EXEC=$(which go)
