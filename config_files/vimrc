@@ -53,7 +53,7 @@ let g:go_fmt_command = "goimports"
 " > Settings
 
 " Indent using 4 spaces
-set ts=2 sw=2 expandtab
+set ts=4 sw=4 expandtab
 
 " Use terminal theme instead of byobu
 set background=dark

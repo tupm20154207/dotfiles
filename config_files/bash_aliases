@@ -7,7 +7,7 @@ alias noproxy='unset http_proxy https_proxy no_proxy'
 alias venv='source ~/workspace/venv/bin/activate'
 
 dict(){
-  trans $@|more
+  trans -speak $@|more
 }
 
 git-sync(){
