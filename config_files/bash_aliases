@@ -10,9 +10,9 @@ pass(){
   DATABASE="$HOME/Database.kdbx"
   GROUP="General"
   read -sp "Password: " PASSWORD
+  echo
   while true; do
     echo -n "password> "
-    echo
     read -p "" CMD ENTRY
     if [[ $CMD == "" ]]; then
       continue
