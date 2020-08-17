@@ -9,19 +9,13 @@ alias venv='source ~/workspace/venv/bin/activate'
 pass(){
   DATABASE="$HOME/Database.kdbx"
   GROUP="General"
-  read -sp "Password: " PASSWORD
-  echo
-  while true; do
-    echo -n "password> "
-    read -p "" CMD ENTRY
-    if [[ $CMD == "" ]]; then
-      continue
-    elif [[ $CMD == "exit" || $CMD == "quit" ]]; then
-      break
-    else
-      echo $PASSWORD | keepassxc-cli $CMD $DATABASE $GROUP/$ENTRY -q
-    fi
-  done
+  CMD=${1}
+  ENTRY=${2}
+  if [[ -z $PASSWORD ]]; then
+    read -sp "Password: " PASSWORD
+    echo
+  fi
+  echo $PASSWORD | keepassxc-cli $CMD $DATABASE $GROUP/$ENTRY -q
 }
 
 dict(){
