@@ -6,6 +6,24 @@ alias restart-gnome='sudo killall -3 gnome-shell'
 alias noproxy='unset http_proxy https_proxy no_proxy'
 alias venv='source ~/workspace/venv/bin/activate'
 
+pass(){
+  DATABASE="$HOME/Database.kdbx"
+  GROUP="General"
+  read -sp "Password: " PASSWORD
+  while true; do
+    echo -n "password> "
+    echo
+    read -p "" CMD ENTRY
+    if [[ $CMD == "" ]]; then
+      continue
+    elif [[ $CMD == "exit" || $CMD == "quit" ]]; then
+      break
+    else
+      echo $PASSWORD | keepassxc-cli $CMD $DATABASE $GROUP/$ENTRY -q
+    fi
+  done
+}
+
 dict(){
   trans -speak $@|more
 }
