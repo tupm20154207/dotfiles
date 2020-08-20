@@ -10,11 +10,12 @@ pass(){
   GROUP="General"
   CMD=${1}
   ENTRY=${2}
+  OTHERS="${@:3}"
   if [[ -z $PASSWORD ]]; then
     read -sp "Password: " PASSWORD
     echo
   fi
-  echo $PASSWORD | keepassxc-cli $CMD $DATABASE $GROUP/$ENTRY -q
+  echo $PASSWORD | keepassxc-cli $CMD $DATABASE $GROUP/$ENTRY $OTHERS -q
 }
 
 dict(){
