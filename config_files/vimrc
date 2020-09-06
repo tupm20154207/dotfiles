@@ -1,36 +1,61 @@
-" Plugins
+"====================================================================
+" PLUGINS
 filetype plugin indent on                               " required
 call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree'                              " File management tree
-Plug 'scrooloose/nerdcommenter'                         " Code commenter
-Plug 'vim-airline/vim-airline'                          " Status bar
-Plug 'vim-airline/vim-airline-themes'                   " Status bar themes
-Plug 'ajmwagar/vim-deus'                                " Deus theme
-Plug 'tpope/vim-fugitive'                               " Managing Git
-Plug 'lepture/vim-jinja'                                " Jinja syntax
-Plug 'Raimondi/delimitMate'                             " Auto closing quotes and brackets
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }      " Vim go
-Plug 'Vimjas/vim-python-pep8-indent'                    " Properly indenting python files
-Plug 'elentok/plaintasks.vim'                           " Sublime plain tasks for vim
+"====================================================================
+" 1. General Plugins
+" >> Directory tree
+Plug 'scrooloose/nerdtree'
+
+" >> Code commenter
+Plug 'scrooloose/nerdcommenter'
+
+" >> Status bar and themes
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" >> Deus theme
+Plug 'ajmwagar/vim-deus'
+
+" >> Managing Git
+Plug 'tpope/vim-fugitive'
+
+" >> Auto-close quotes and brackets
+Plug 'Raimondi/delimitMate'
+
+" >> PlainTask extension for Vim
+Plug 'elentok/plaintasks.vim'
+
+" >> Surround objects
+Plug 'tpope/vim-surround'
+
+"====================================================================
+" 2. Language-specific plugins
+" a. Jinja plugins
+" >> Jinja syntax highlighter
+Plug 'lepture/vim-jinja'
+
+" b. Python plugins
+" >> Properly indenting python files
+Plug 'Vimjas/vim-python-pep8-indent'
 call plug#end()
 
-"=============================================================================
-" Plugin Configurations
+"====================================================================
+" PLUGIN CONFIGS
 
-" > UltiSnips Configurations
+" >> UltiSnips
 let g:UltiSnipsEditSplit="vertical"
 
-" > NERDTree Configurations
+" >> nerdtree
 nmap <F10> :NERDTreeToggle<CR>
 
-" > NERDCommenter Configurations
+" >> nerdcommenter
 map <C-_> <plug>NERDCommenterToggle
-imap <C-_> <ESC><plug>NERDCommenterToggle
 
-" > Airline Configurations
+" >> vim-airline
 let g:airline_theme="deus"
 
-" > Deus theme configurations
+" >> deus theme
 augroup my_colors
   autocmd!
   autocmd ColorScheme deus hi SpellBad cterm=reverse
@@ -43,76 +68,70 @@ set background=dark    " Setting dark mode
 colorscheme deus
 let g:deus_termcolors=256
 
-" > Vim-go Configurations
-let g:go_fmt_command = "goimports"
+"====================================================================
+" USER CONFIGS
 
-"=============================================================================
-" User Configurations
+"====================================================================
+" 1. Settings
 
-"=============================================================================
-" > Settings
-
-" Indent using 4 spaces
+" >> Indent using 4 spaces
 set ts=4 sw=4 expandtab
 
-" Use terminal theme instead of byobu
+" >> Use terminal theme instead of byobu
 set background=dark
 
-" Enable syntax highlighting
+" >> Enable syntax highlighting
 set syntax=enable
 syntax on
 
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
+" >> Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
 set nowritebackup
 set nowb
 set noswapfile
 
-" Disable bold font
+" >> Disable bold font
 set t_md=
 
-" Highlight search
+" >> Highlight search
 set hlsearch
 
-" Make backspace works like other editors
+" >> Make backspace works like other editors
 set backspace=indent,eol,start
 
-" Break line preserving words
+" >> Break line preserving words
 set wrap
 set linebreak
 
-"=============================================================================
-" > Mappings
+"====================================================================
+" 2. Mappings
 
-" Map leader key to ','
+" >> Map leader key to ','
 let mapleader = ","
 
-" Smart way to move between splits
+" >> Smart way to move between splits
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-" Unhighlight searched patterns by pressing Space key in normal mode
+" >> Unhighlight searched patterns
 :noremap <silent> <Space> :silent noh<Bar>echo<CR>
 
-" Replace visual selected text without yanking it
+" >> Replace visual selected text without yanking it
 vnoremap p "_dP
 
-" Pressing ,ss will toggle and untoggle spell checking
+" >> Toggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
-" Toggle line number
+" >> Toggle line number
 map <leader>ln :set invnumber<CR>
 
-"=============================================================================
-" > Autocmds
+"====================================================================
+" 3. Autocmds
 
-" Return to last edit position when opening files (You want this!)
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-" Indent using two spaces in yaml files
+" >> Indent using two spaces in yaml files
 autocmd FileType yaml setlocal ts=2 sw=2
 
-" Trim trailing whitespaces on save
+" >> Trim trailing whitespaces on save
 autocmd BufWritePre * %s/\s\+$//e
