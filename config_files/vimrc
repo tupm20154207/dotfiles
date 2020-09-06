@@ -26,8 +26,11 @@ Plug 'Raimondi/delimitMate'
 " >> PlainTask extension for Vim
 Plug 'elentok/plaintasks.vim'
 
-" >> Surround objects
+" >> Vim surround objects
 Plug 'tpope/vim-surround'
+
+" >> Vim indent objects
+Plug 'michaeljsmith/vim-indent-object'
 
 "====================================================================
 " 2. Language-specific plugins
@@ -127,6 +130,10 @@ map <leader>ss :setlocal spell!<cr>
 " >> Toggle line number
 map <leader>ln :set invnumber<CR>
 
+" >> Rename local variables
+nnoremap gR gd:call Rename()<CR>
+nnoremap gr gD:call Rename()<CR>
+
 "====================================================================
 " 3. Autocmds
 
@@ -135,3 +142,14 @@ autocmd FileType yaml setlocal ts=2 sw=2
 
 " >> Trim trailing whitespaces on save
 autocmd BufWritePre * %s/\s\+$//e
+
+"====================================================================
+" FUNCTIONS
+
+" >> Rename a variable in current scope
+" *Note: Scopes are identified by indentation level
+function! Rename()
+    let old_name = expand("<cword>")
+    let new_name = input("New variable name: ")
+    call feedkeys("vii:s/\\<" . old_name . "\\>/" . new_name . "/g\<CR>")
+endfunction
