@@ -46,9 +46,6 @@ call plug#end()
 "====================================================================
 " PLUGIN CONFIGS
 
-" >> UltiSnips
-let g:UltiSnipsEditSplit="vertical"
-
 " >> nerdtree
 nmap <F10> :NERDTreeToggle<CR>
 
