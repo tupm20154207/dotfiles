@@ -131,8 +131,8 @@ map <leader>ss :setlocal spell!<cr>
 map <leader>ln :set invnumber<CR>
 
 " >> Rename local variables
-nnoremap gR gd:call Rename()<CR>
-nnoremap gr gD:call Rename()<CR>
+nnoremap gr gd:call Rename()<CR>
+nnoremap gR gD:call Rename()<CR>
 
 "====================================================================
 " 3. Autocmds
