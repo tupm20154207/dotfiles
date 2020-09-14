@@ -4,6 +4,7 @@ filetype plugin indent on                               " required
 call plug#begin('~/.vim/plugged')
 "====================================================================
 " 1. General Plugins
+
 " >> Directory tree
 Plug 'scrooloose/nerdtree'
 
@@ -23,26 +24,35 @@ Plug 'tpope/vim-fugitive'
 " >> Auto-close quotes and brackets
 Plug 'Raimondi/delimitMate'
 
-" >> PlainTask extension for Vim
-Plug 'elentok/plaintasks.vim'
-
 " >> Vim surround objects
 Plug 'tpope/vim-surround'
 
 " >> Vim indent objects
 Plug 'michaeljsmith/vim-indent-object'
 
+" >> Snippets
+Plug 'SirVer/ultisnips'
+
 "====================================================================
 " 2. Language-specific plugins
+
 " a. Jinja plugins
-" >> Jinja syntax highlighter
+" >> Jinja file type
 Plug 'lepture/vim-jinja'
 
 " b. Python plugins
 " >> Properly indenting python files
 Plug 'Vimjas/vim-python-pep8-indent'
-call plug#end()
 
+" c. PlainTask plugins
+" >> PlainTask file type
+Plug 'tu-pm/plaintasks.vim'
+
+" d. Markdown plugins
+" >> Markdown file type
+Plug 'plasticboy/vim-markdown'
+
+call plug#end()
 "====================================================================
 " PLUGIN CONFIGS
 
@@ -67,6 +77,12 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=dark    " Setting dark mode
 colorscheme deus
 let g:deus_termcolors=256
+
+" >> vim-markdown
+let g:vim_markdown_folding_disabled = 1
+
+" >> ultisnips
+let g:UltiSnipsEditSplit="vertical"
 
 "====================================================================
 " USER CONFIGS
@@ -139,7 +155,6 @@ autocmd FileType yaml setlocal ts=2 sw=2
 
 " >> Trim trailing whitespaces on save
 autocmd BufWritePre * %s/\s\+$//e
-
 "====================================================================
 " FUNCTIONS
 
@@ -150,3 +165,4 @@ function! Rename()
     let new_name = input("New variable name: ")
     call feedkeys("vii:s/\\<" . old_name . "\\>/" . new_name . "/g\<CR>")
 endfunction
+
