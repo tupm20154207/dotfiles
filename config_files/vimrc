@@ -50,7 +50,7 @@ Plug 'tu-pm/plaintasks.vim'
 
 " d. Markdown plugins
 " >> Markdown file type
-Plug 'plasticboy/vim-markdown'
+Plug 'tu-pm/vim-markdown'
 
 call plug#end()
 "====================================================================
