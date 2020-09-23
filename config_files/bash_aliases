@@ -6,68 +6,72 @@ alias noproxy='unset http_proxy https_proxy no_proxy'
 alias venv='source ~/workspace/venv/bin/activate'
 
 pass(){
-  DATABASE="$HOME/Database.kdbx"
-  GROUP="General"
-  CMD=${1}
-  ENTRY=${2}
-  OTHERS="${@:3}"
-  if [[ -z $PASSWORD ]]; then
-    read -sp "Password: " PASSWORD
-    echo
-  fi
-  echo $PASSWORD | keepassxc-cli $CMD $DATABASE $GROUP/$ENTRY $OTHERS -q
+    DATABASE="$HOME/Database.kdbx"
+    GROUP="General"
+    CMD=${1}
+    ENTRY=${2}
+    OTHERS="${@:3}"
+    if [[ "$CMD" == "add" ]]; then
+        keepassxc-cli $CMD $DATABASE $GROUP/$ENTRY -p
+    else
+        while ! echo $PASSWORD | keepassxc-cli ls $DATABASE -q &>/dev/null; do
+            read -sp "Password: " PASSWORD
+            echo
+        done
+        echo $PASSWORD | keepassxc-cli $CMD $DATABASE $GROUP/$ENTRY $OTHERS -q
+    fi
 }
 
 dict(){
-  trans -speak $@|more
+    trans -speak $@|more
 }
 
 git-sync(){
-  remote=${1:-"origin"}
-  branch=${2:-"master"}
-  git add -A
-  git commit -m "Synced at $(date +'%Y-%m-%d %T')"
-  git push $remote $branch
+    remote=${1:-"origin"}
+    branch=${2:-"master"}
+    git add -A
+    git commit -m "Synced at $(date +'%Y-%m-%d %T')"
+    git push $remote $branch
 }
 
 git(){
-  if [[ "$1" == "commit" ]]; then
-    # If current remote branch is from github, use personal email
-    # otherwise use viettel email
-    remote=$(git status -sb | head -n1 | sed "s/.*\.\.\.\(.*\)\/.*/\1/")
-    git remote -v | grep $remote | grep push | grep "10.240.203.2" > /dev/null
-    if [[ "$?" == "0" ]]; then
-      AUTHOR="Tu Pham <tupm4@viettel.com.vn>"
+    if [[ "$1" == "commit" ]]; then
+        # If current remote branch is from github, use personal email
+        # otherwise use viettel email
+        remote=$(git status -sb | head -n1 | sed "s/.*\.\.\.\(.*\)\/.*/\1/")
+        git remote -v | grep $remote | grep push | grep "10.240.203.2" > /dev/null
+        if [[ "$?" == "0" ]]; then
+            AUTHOR="Tu Pham <tupm4@viettel.com.vn>"
+        else
+            AUTHOR="Tu Pham <phamminhtubkhn@gmail.com>"
+        fi
+        command git "$@" --author "$AUTHOR"
     else
-      AUTHOR="Tu Pham <phamminhtubkhn@gmail.com>"
+        command git "$@"
     fi
-    command git "$@" --author "$AUTHOR"
-  else
-    command git "$@"
-  fi
 }
 
 # Update tools & apps
 code-update(){
-  PKG=/tmp/code_latest_amd64.deb
-  wget https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable -O $PKG --no-check-certificate
-  sudo dpkg -i $PKG
-  rm $PKG
+    PKG=/tmp/code_latest_amd64.deb
+    wget https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable -O $PKG --no-check-certificate
+    sudo dpkg -i $PKG
+    rm $PKG
 }
 
 subl-update(){
-  PKG=/tmp/subl_latest_amd64.deb
-  wget download.sublimetext.com/latest/stable/linux/x64/deb -O $PKG --no-check-certificate
-  sudo dpkg -i $PKG
-  rm $PKG
+    PKG=/tmp/subl_latest_amd64.deb
+    wget download.sublimetext.com/latest/stable/linux/x64/deb -O $PKG --no-check-certificate
+    sudo dpkg -i $PKG
+    rm $PKG
 }
 
 postman-update(){
-  PKG=/tmp/postman.tar.gz
-  wget "https://dl.pstmn.io/download/latest/linux" -O $PKG --no-check-certificate
-  sudo tar -xzf $PKG -C /opt/
-  rm $PKG
-  cat << EOF > "${HOME}/.local/share/applications/postman.desktop"
+    PKG=/tmp/postman.tar.gz
+    wget "https://dl.pstmn.io/download/latest/linux" -O $PKG --no-check-certificate
+    sudo tar -xzf $PKG -C /opt/
+    rm $PKG
+    cat << EOF > "${HOME}/.local/share/applications/postman.desktop"
 [Desktop Entry]
 Encoding=UTF-8
 Version=1.0
@@ -84,22 +88,22 @@ EOF
 }
 
 go-update(){
-  PKG=/tmp/go.tar.gz
-  wget "https://dl.google.com/go/$(curl https://golang.org/VERSION?m=text).linux-amd64.tar.gz" -O $PKG --no-check-certificate
-  sudo tar -xzf $PKG -C /usr/local/
-  rm $PKG
+    PKG=/tmp/go.tar.gz
+    wget "https://dl.google.com/go/$(curl https://golang.org/VERSION?m=text).linux-amd64.tar.gz" -O $PKG --no-check-certificate
+    sudo tar -xzf $PKG -C /usr/local/
+    rm $PKG
 }
 
 # Configure tools & apps
 go-config(){
-  EXEC=$(which go)
-  if [[ $? -eq 0 ]]; then
-    mkdir -p $HOME/go
-    echo "export GOROOT=${EXEC:0:-7}" >> ~/.bashrc
-    echo "export GOPATH=$HOME/go" >> ~/.bashrc
-    echo "export PATH=\$GOPATH/bin:\$GOROOT/bin:\$PATH" >> ~/.bashrc
-    source ~/.bashrc
-  else
-    echo "Please install golang on your system first."
-  fi
+    EXEC=$(which go)
+    if [[ $? -eq 0 ]]; then
+        mkdir -p $HOME/go
+        echo "export GOROOT=${EXEC:0:-7}" >> ~/.bashrc
+        echo "export GOPATH=$HOME/go" >> ~/.bashrc
+        echo "export PATH=\$GOPATH/bin:\$GOROOT/bin:\$PATH" >> ~/.bashrc
+        source ~/.bashrc
+    else
+        echo "Please install golang on your system first."
+    fi
 }
