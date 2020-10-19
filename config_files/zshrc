@@ -1,0 +1,21 @@
+# Global environment
+export EDITOR=/usr/local/bin/vim
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+
+# Configure zsh typewritten
+fpath+=$HOME/.zsh/typewritten
+autoload -U promptinit; promptinit
+prompt typewritten
+export TYPEWRITTEN_CURSOR="block"
+
+# Colorize some commands
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# Import aliases
+source $HOME/.zsh_aliases
+source "$HOME/.zsh_aliases.local"
