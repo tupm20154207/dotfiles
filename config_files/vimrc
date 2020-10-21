@@ -66,17 +66,12 @@ map <C-_> <plug>NERDCommenterToggle
 let g:airline_theme="deus"
 
 " >> deus theme
-augroup my_colors
-  autocmd!
-  autocmd ColorScheme deus hi SpellBad cterm=reverse
-augroup END
+colorscheme deus
 set t_Co=256
 set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=dark    " Setting dark mode
-colorscheme deus
-let g:deus_termcolors=256
 
 " >> vim-markdown
 let g:vim_markdown_folding_disabled = 1
@@ -92,9 +87,6 @@ let g:UltiSnipsEditSplit="vertical"
 
 " >> Indent using 4 spaces
 set ts=4 sw=4 expandtab
-
-" >> Use terminal theme instead of byobu
-set background=dark
 
 " >> Enable syntax highlighting
 set syntax=enable
@@ -155,6 +147,10 @@ autocmd FileType yaml setlocal ts=2 sw=2
 
 " >> Trim trailing whitespaces on save
 autocmd BufWritePre * %s/\s\+$//e
+
+" >> Make highlighting spelling errors work with custom color schemes
+autocmd ColorScheme * hi SpellBad cterm=reverse
+
 "====================================================================
 " FUNCTIONS
 
