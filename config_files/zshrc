@@ -17,5 +17,5 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # Import aliases
-source $HOME/.zsh_aliases
-source "$HOME/.zsh_aliases.local"
+if [ -f "$HOME/.zsh_aliases" ]; then source "$HOME/.zsh_aliases"; fi
+if [ -f "$HOME/.zsh_aliases.local" ]; then source "$HOME/.zsh_aliases.local"; fi
