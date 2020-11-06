@@ -50,6 +50,7 @@ Plug 'tu-pm/plaintasks.vim'
 
 " d. Markdown plugins
 " >> Markdown file type
+Plug 'godlygeek/tabular'
 Plug 'tu-pm/vim-markdown'
 
 call plug#end()
@@ -135,10 +136,6 @@ map <leader>ss :setlocal spell!<cr>
 " >> Toggle line number
 map <leader>ln :set invnumber<CR>
 
-" >> Rename local variables
-nnoremap gr gd:call Rename()<CR>
-nnoremap gR gD:call Rename()<CR>
-
 "====================================================================
 " 3. Autocmds
 
@@ -150,15 +147,3 @@ autocmd BufWritePre * %s/\s\+$//e
 
 " >> Make highlighting spelling errors work with custom color schemes
 autocmd ColorScheme * hi SpellBad cterm=reverse
-
-"====================================================================
-" FUNCTIONS
-
-" >> Rename a variable in current scope
-" *Note: Scopes are identified by indentation level
-function! Rename()
-    let old_name = expand("<cword>")
-    let new_name = input("New variable name: ")
-    call feedkeys("vii:s/\\<" . old_name . "\\>/" . new_name . "/g\<CR>")
-endfunction
-

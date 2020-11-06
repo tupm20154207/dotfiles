@@ -10,6 +10,11 @@ autoload -U promptinit; promptinit
 prompt typewritten
 export TYPEWRITTEN_CURSOR="block"
 
+# Configure Tilix
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+    source /etc/profile.d/vte.sh
+fi
+
 # Colorize some commands
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
@@ -19,3 +24,6 @@ alias egrep='egrep --color=auto'
 # Import aliases
 if [ -f "$HOME/.zsh_aliases" ]; then source "$HOME/.zsh_aliases"; fi
 if [ -f "$HOME/.zsh_aliases.local" ]; then source "$HOME/.zsh_aliases.local"; fi
+
+# Disable FocusIn/FocusOut (https://unix.stackexchange.com/questions/480052/how-do-i-detect-whether-my-terminal-has-focus-in-the-gui-from-a-shell-script/480138#480138)
+echo -ne '\e[?1004l'

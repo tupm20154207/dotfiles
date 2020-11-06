@@ -1,4 +1,9 @@
+# Aliases
+alias venv='source ~/workspace/venv/bin/activate'
+
 # Functions
+
+# Keepassxc CLI
 pass(){
     DATABASE="$HOME/Database.kdbx"
     GROUP="General"
@@ -49,3 +54,5 @@ git(){
         command git "$@"
     fi
 }
+
+
