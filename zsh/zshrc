@@ -2,24 +2,28 @@
 export EDITOR=/usr/local/bin/vim
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
-
-# Configure zsh typewritten
-fpath+=$HOME/.zsh/typewritten
-autoload -U promptinit; promptinit
-prompt typewritten
-export TYPEWRITTEN_CURSOR="block"
-
-# Configure Tilix
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-    source /etc/profile.d/vte.sh
-fi
+export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH
 
 # Colorize some commands
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+
+# Configure typewritten
+fpath+=$HOME/.zsh/typewritten
+autoload -U promptinit; promptinit
+prompt typewritten
+export TYPEWRITTEN_CURSOR="block"
+
+# Configure completion
+fpath+=$HOME/.zsh/completion
+autoload -Uz compinit; compinit -i
+
+# Configure Tilix
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+    source /etc/profile.d/vte.sh
+fi
 
 # Import aliases
 if [ -f "$HOME/.zsh_aliases" ]; then source "$HOME/.zsh_aliases"; fi

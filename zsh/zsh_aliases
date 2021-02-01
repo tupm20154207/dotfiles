@@ -33,24 +33,24 @@ dict(){
     trans -speak $@|more
 }
 
-git(){
-    if [[ "$1" == "commit" ]]; then
-        echo "Commit as author:"
-        echo "[1]: Tu Pham <phamminhtubkhn@gmail.com>"
-        echo "[2]: Tu Pham <tupm4@viettel.com.vn>"
-        echo "[3]: Another author"
-        read -r "choice?[1-3]: "
-        if [[ "$choice" == "1" ]]; then
-            AUTHOR="Tu Pham <phamminhtubkhn@gmail.com>"
-        elif [[ "$choice" == "2" ]]; then
-            AUTHOR="Tu Pham <tupm4@viettel.com.vn>"
-        elif [[ "$choice" == "3" ]]; then
-            read -r "AUTHOR?You are? "
-        else
-            echo "Use pre-configured author then."
-        fi
-        command git "$@" --author "$AUTHOR"
-    else
-        command git "$@"
-    fi
-}
+#git(){
+    #if [[ "$1" == "commit" ]]; then
+        #echo "Commit as author:"
+        #echo "[1]: Tu Pham <phamminhtubkhn@gmail.com>"
+        #echo "[2]: Tu Pham <tupm4@viettel.com.vn>"
+        #echo "[3]: Another author"
+        #read -r "choice?[1-3]: "
+        #if [[ "$choice" == "1" ]]; then
+            #AUTHOR="Tu Pham <phamminhtubkhn@gmail.com>"
+        #elif [[ "$choice" == "2" ]]; then
+            #AUTHOR="Tu Pham <tupm4@viettel.com.vn>"
+        #elif [[ "$choice" == "3" ]]; then
+            #read -r "AUTHOR?You are? "
+        #else
+            #echo "Use pre-configured author then."
+        #fi
+        #command git "$@" --author "$AUTHOR"
+    #else
+        #command git "$@"
+    #fi
+#}

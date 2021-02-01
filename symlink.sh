@@ -1,7 +1,11 @@
 #!/bin/bash
 
-ln -sfn $(pwd)/config_files/vimrc ~/.vimrc
-ln -sfn $(pwd)/config_files/bash_aliases ~/.bash_aliases
-ln -sfn $(pwd)/ultisnips ~/.vim/UltiSnips
-ln -sfn $(pwd)/config_files/zshrc ~/.zshrc
-ln -sfn $(pwd)/config_files/zsh_aliases ~/.zsh_aliases
+# Vim
+ln -sfn $(pwd)/vim/vimrc ~/.vimrc
+ln -sfn $(pwd)/vim/ultisnips ~/.vim/UltiSnips
+# Bash
+ln -sfn $(pwd)/bash/bash_aliases ~/.bash_aliases
+# Zsh
+ln -sfn $(pwd)/zsh/zshrc ~/.zshrc
+ln -sfn $(pwd)/zsh/zsh_aliases ~/.zsh_aliases
+ln -sfn $(pwd)/zsh/completion ~/.zsh/completion

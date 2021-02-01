@@ -89,7 +89,7 @@ EOF
 
 go-update(){
     PKG=/tmp/go.tar.gz
-    wget "https://dl.google.com/go/$(curl https://golang.org/VERSION?m=text).linux-amd64.tar.gz" -O $PKG --no-check-certificate
+    wget "https://dl.google.com/go/$(curl -k https://golang.org/VERSION?m=text).linux-amd64.tar.gz" -O $PKG --no-check-certificate
     sudo tar -xzf $PKG -C /usr/local/
     rm $PKG
 }
