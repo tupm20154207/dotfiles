@@ -18,7 +18,8 @@ export TYPEWRITTEN_CURSOR="block"
 
 # Configure completion
 fpath+=$HOME/.zsh/completion
-autoload -Uz compinit; compinit -i
+autoload -U compinit; compinit
+#autoload -Uz compinit; compinit -i
 
 # Configure Tilix
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
