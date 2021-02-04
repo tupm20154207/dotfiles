@@ -1,5 +1,7 @@
 # Aliases
 alias venv='source ~/workspace/venv/bin/activate'
+alias venv2='source ~/workspace/venv2/bin/activate'
+alias open='xdg-open'
 
 # Functions
 
