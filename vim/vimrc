@@ -131,10 +131,14 @@ map <C-l> <C-W>l
 vnoremap p "_dP
 
 " >> Toggle spell checking
-map <leader>ss :setlocal spell!<cr>
+map <leader>ss :setlocal spell!<CR>
 
 " >> Toggle line number
 map <leader>ln :set invnumber<CR>
+
+" >> Change tabs width
+map <leader>2 :set sw=2 ts=2 expandtab<CR>
+map <leader>4 :set sw=4 ts=4 expandtab<CR>
 
 "====================================================================
 " 3. Autocmds
