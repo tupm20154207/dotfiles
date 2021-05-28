@@ -32,3 +32,9 @@ if [ -f "$HOME/.zsh_aliases.local" ]; then source "$HOME/.zsh_aliases.local"; fi
 
 # Disable FocusIn/FocusOut (https://unix.stackexchange.com/questions/480052/how-do-i-detect-whether-my-terminal-has-focus-in-the-gui-from-a-shell-script/480138#480138)
 echo -ne '\e[?1004l'
+
+# Configure history
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt INC_APPEND_HISTORY_TIME

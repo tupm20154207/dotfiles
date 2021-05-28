@@ -53,6 +53,10 @@ Plug 'tu-pm/plaintasks.vim'
 Plug 'godlygeek/tabular'
 Plug 'tu-pm/vim-markdown'
 
+" e. Go plugins
+" >> vim-go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 call plug#end()
 "====================================================================
 " PLUGIN CONFIGS
@@ -140,6 +144,12 @@ map <leader>ln :set invnumber<CR>
 map <leader>2 :set sw=2 ts=2 expandtab<CR>
 map <leader>4 :set sw=4 ts=4 expandtab<CR>
 
+" >> Copy visual selected text to clipboard
+vnoremap Y "+y
+
+" >> Make highlighting spelling errors work with custom color schemes
+hi SpellBad cterm=underline
+
 "====================================================================
 " 3. Autocmds
 
@@ -149,5 +159,3 @@ autocmd FileType yaml setlocal ts=2 sw=2
 " >> Trim trailing whitespaces on save
 autocmd BufWritePre * %s/\s\+$//e
 
-" >> Make highlighting spelling errors work with custom color schemes
-autocmd ColorScheme * hi SpellBad cterm=reverse
